@@ -1,8 +1,5 @@
-# cd /home/ubuntu/stock_platform/django_testing
-# docker-compose down
+cd /home/ubuntu/server/stock_platform
+docker-compose down
 
-# cd /home/ubuntu/stock_platform
-# rm -rf ./django_testing
-
-cd /home/ubuntu/
+cd /home/ubuntu/server
 rm -rf ./stock_platform
