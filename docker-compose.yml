@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    image: django_testing_svc
+    command: bash -c "python3.6 manage.py runserver 0.0.0.0:8000"
+
+    volumes:
+      - .:/app
+    working_dir: /app
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+      - 5431:5431
+    environment:
+      - LOG_LEVEL=DEBUG
+      - DJANGO_DEBUG=true
+      - DJANGO_SECRET_KEY=^1@u-(^=)s3y$17gjwbk2+p20n&rp%@u1eigrw4f)9cg&mtfp0
+
