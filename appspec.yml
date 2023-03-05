@@ -11,8 +11,14 @@ permissions:
 files:
   - source: ./
     destination: /home/ubuntu/stock_platform
-# hooks:
-#   BeforeInstall:
-#     - location: scripts/beforeInstall.bash
-#   AfterInstall:
-#     - location: scripts/afterInstall.bash
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.bash
+      timeout: 300
+      runas: root
+#   Install:
+#    - location: scripts/install.bash
+#      runas: root
+#   ApplicationStart:
+#    - location: scripts/app_start
+#      runas: root
