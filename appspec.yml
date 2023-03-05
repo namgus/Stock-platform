@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+permissions:
+  - object: /home/ubuntu/
+    owner: ubuntu
+    group: ubuntu
+    mode: 644
+    type:
+      - directory
+      - file
+files:
+  - source: ./
+    destination: /home/ubuntu/stock_platform
+# hooks:
+#   BeforeInstall:
+#     - location: scripts/beforeInstall.bash
+#   AfterInstall:
+#     - location: scripts/afterInstall.bash
