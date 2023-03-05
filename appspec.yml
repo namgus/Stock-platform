@@ -3,14 +3,14 @@ os: linux
 files:
   - source: ./
     destination: /home/ubuntu/server/stock_platform
-hooks:
-  BeforeInstall:
-    - location: scripts/before_install.bash
-      timeout: 300
-      runas: root
-  Install:
-   - location: scripts/install.bash
-     runas: root
-  ApplicationStart:
-   - location: scripts/app_start.bash
-     runas: root
+# hooks:
+#   BeforeInstall:
+#     - location: scripts/before_install.bash
+#       timeout: 300
+#       runas: root
+#   Install:
+#    - location: scripts/install.bash
+#      runas: root
+#   ApplicationStart:
+#    - location: scripts/app_start.bash
+#      runas: root
