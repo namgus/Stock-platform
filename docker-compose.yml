@@ -17,5 +17,4 @@ services:
     environment:
       - LOG_LEVEL=DEBUG
       - DJANGO_DEBUG=true
-      - DJANGO_SECRET_KEY=^1@u-(^=)s3y$17gjwbk2+p20n&rp%@u1eigrw4f)9cg&mtfp0
 
