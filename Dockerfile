@@ -1,21 +1,17 @@
-FROM ubuntu:16.04
+FROM python:3.8.8
+ENV PYTHONUNBUFFERED 1 
 
-ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get -y update 
+RUN apt-get -y install vim 
 
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 PYTHONUNBUFFERED=1 TZ=Asia/Seoul
+RUN mkdir /srv/docker-server
+ADD . /srv/docker-server
 
-RUN apt-get update && \
-        apt-get install -y tzdata && \
-        apt-get install -y software-properties-common && \
-        add-apt-repository -y ppa:fkrull/deadsnakes && \
-        apt-get update -y  && \
-        apt-get install -y build-essential python3.6 python3.6-dev python3-pip && \
+WORKDIR /srv/docker-server 
 
-        python3.6 -m pip install pip --upgrade && \
-        python3.6 -m pip install wheel && \
-        apt-get -o Dpkg::Options::="--force-overwrite" install -y openjdk-9-jdk
-
-WORKDIR /app
-COPY ./ ./
-
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+ 
+EXPOSE 8000
+ 
+CMD python3 manage.py runserver 0.0.0.0:8000
