@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: ./
-    destination: /home/ubuntu/server/stock_platform
+    destination: /home/ubuntu/server/Stock-platform
 hooks:
   BeforeInstall:
     - location: scripts/before_install.bash
