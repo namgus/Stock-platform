@@ -33,9 +33,7 @@ six==1.16.0
 soupsieve==2.4
 sqlparse==0.4.3
 tokenizers==0.13.2
-torch==1.13.1
-torchaudio==0.13.1
-torchvision==0.14.1
+pip install torch==1.6.0+cpu torchvision==0.7.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 tqdm==4.65.0
 transformers==4.26.1
 typing_extensions==4.5.0

@@ -9,7 +9,6 @@ ADD . /app
 WORKDIR /app
 
 RUN pip install --upgrade pip
-RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
 RUN pip install -r requirements.txt
 
  
