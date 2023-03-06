@@ -1,11 +1,10 @@
-version: '3.7'
+version: '3.8'
 
 services:
   app:
-    build: .
-    image: django_testing_svc
-    command: bash -c "python manage.py runserver 0.0.0.0:8000"
-
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     volumes:
       - .:/app
     working_dir: /app
@@ -13,8 +12,4 @@ services:
       - 8000
     ports:
       - 8000:8000
-      - 5431:5431
-    environment:
-      - LOG_LEVEL=DEBUG
-      - DJANGO_DEBUG=true
-
+      - 80:80
