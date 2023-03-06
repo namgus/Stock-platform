@@ -1,3 +1,3 @@
-cd /home/ubuntu/server/stock_platform
+cd /home/ubuntu/server/Stock-platform
 sudo docker compose build
 sudo docker compose up -d
