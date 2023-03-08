@@ -35,7 +35,16 @@ function RestAPI() {
     <>
       <div>
         <button onClick={()=>{
-          axios.get("http://15.164.227.80:8000/stock/hello")
+          axios.get("http://15.164.227.80:8000/stock/hello/")
+          .then(function (response) {
+            console.log(response);
+          })
+        }}
+        >button</button>
+      </div>
+      <div>
+        <button onClick={()=>{
+          axios.get("http://127.0.0.1:8000/stock/hello/")
           .then(function (response) {
             console.log(response);
           })
