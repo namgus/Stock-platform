@@ -2,6 +2,7 @@ version: '3.8'
  
 services:
   app:
+    container_name: back
     build:
       context: ./backend/
       dockerfile: Dockerfile

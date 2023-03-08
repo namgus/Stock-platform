@@ -20,16 +20,14 @@ function App() {
         >
           Learn React
         </a>
+        <RestAPI></RestAPI>
       </header>
-      <RestAPI>
-        
-      </RestAPI>
     </div>
   );
 }
 
 function RestAPI() {
-  const [text, setText] = useState([]);
+  const [text, setText] = useState("");
 
   return (
     <>
@@ -38,10 +36,12 @@ function RestAPI() {
           axios.get("http://15.164.227.80:8000/stock/hello/")
           .then(function (response) {
             console.log(response);
+            { setText("test") };
           })
         }}
         >button</button>
       </div>
+
       <div>
         <button onClick={()=>{
           axios.get("http://127.0.0.1:8000/stock/hello/")
@@ -50,6 +50,10 @@ function RestAPI() {
           })
         }}
         >button</button>
+      </div>
+
+      <div> 
+        {text}
       </div>
     </>
   )
