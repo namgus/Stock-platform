@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 
+import React, { useState } from "react";
+import axios from "axios";
+
 function App() {
   return (
     <div className="App">
@@ -18,8 +21,30 @@ function App() {
           Learn React
         </a>
       </header>
+      <RestAPI>
+        
+      </RestAPI>
     </div>
   );
 }
+
+function RestAPI() {
+  const [text, setText] = useState([]);
+
+  return (
+    <>
+      <div>
+        <button onClick={()=>{
+          axios.get("http://15.164.227.80:8000/stock/hello")
+          .then(function (response) {
+            console.log(response);
+          })
+        }}
+        >button</button>
+      </div>
+    </>
+  )
+}
+
 
 export default App;
