@@ -18,8 +18,8 @@ def HelloAPI(request):
 @api_view(['GET'])
 def PriceAPI(request):
     df = stock.get_market_ohlcv("20230305", "20240221", "005930")
-    price = int(df.tail(2)['종가'])
-
+    price = int(df.tail(1)['종가'])
+    print(price)
     serial = serializer.StockSerializer(models.Stock(price=price))
     return Response(serial.data)
 
