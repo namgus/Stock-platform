@@ -25,6 +25,9 @@ def PriceAPI(request):
 
 @api_view(['GET'])
 def DebateAPI(request):
-    result = get_naver_finance_board("005930", "1").to_json(orient='records')
+    code = request.GET.get('code', "005930")
+    page = request.GET.get('page', "1")
+
+    result = get_naver_finance_board(code, page).to_json(orient='records')
 
     return JsonResponse(json.loads(result), safe = False)
