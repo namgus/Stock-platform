@@ -83,3 +83,24 @@ class PredictPriceTest(TestCase):
         code = "000000"
         response = self.client.get(f'/stock/predict/?code={code}')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        
+
+class FinancialTest(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_financial_with_default_code(self):
+        response = self.client.get('/stock/financial/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(response.content)
+
+    def test_financial_with_custom_code(self):
+        code = "005930"
+        response = self.client.get(f'/stock/financial/?code={code}')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(response.content)
+
+    def test_financial_with_invalid_code(self):
+        code = "000000"
+        response = self.client.get(f'/stock/financial/?code={code}')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

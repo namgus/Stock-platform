@@ -83,6 +83,9 @@ def financial_api(request):
     end_date = datetime.datetime.now()
 
     df = stock.get_market_fundamental(start_date.strftime("%Y%m%d"), end_date.strftime("%Y%m%d"), code, freq="m")
+    if df.empty:
+        return Response({'error': 'No data available'}, status=status.HTTP_404_NOT_FOUND)
+    
     result = df.to_json(orient='table')
 
     return JsonResponse(json.loads(result), safe = False)
