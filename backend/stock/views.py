@@ -1,6 +1,3 @@
-from rest_framework import viewsets, permissions, generics, status
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -10,7 +7,8 @@ import datetime
 import json
 from django.http import JsonResponse
 
-from . import serializer, models
+from .models import Comment
+from .serializer import CommentSerializer
 from .sentiment_analysis import get_naver_finance_board
 from .load_model import load_model, limit_stock_price
 
@@ -75,3 +73,19 @@ def financial_api(request):
     result = df.to_json(orient='table')
 
     return JsonResponse(json.loads(result), safe = False)
+
+
+@api_view(['GET', 'POST'])
+def comment_api(request):
+    if request.method == 'GET':
+        code = request.GET.get('code', '005930')
+        comments = Comment.objects.filter(code=code).values('created_at', 'comments')
+
+        return Response(comments)
+
+    elif request.method == "POST":
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)

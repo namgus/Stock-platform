@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Stock
+from .models import Comment
 
-class StockSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Stock
+        model = Comment
         fields = '__all__'
