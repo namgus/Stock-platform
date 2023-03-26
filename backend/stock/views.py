@@ -16,12 +16,18 @@ def HelloAPI(request):
 
 
 @api_view(['GET'])
-def PriceAPI(request):
-    df = stock.get_market_ohlcv("20230305", "20240221", "005930")
-    price = int(df.tail(1)['종가'])
-    print(price)
-    serial = serializer.StockSerializer(models.Stock(price=price))
-    return Response(serial.data)
+def price_api(request):
+    code = request.GET.get('code', "005930")
+
+    end_date = datetime.datetime.now()
+    start_date = end_date - datetime.timedelta(days=7)
+    
+    df = stock.get_market_ohlcv(start_date.strftime("%Y%m%d"), end_date.strftime("%Y%m%d"), code)
+
+    price = df.iloc[-1]['종가']
+
+    return Response({'price': price})
+
 
 @api_view(['GET'])
 def DebateAPI(request):
