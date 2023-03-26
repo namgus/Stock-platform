@@ -9,10 +9,10 @@ from .views import (
 )
 
 urlpatterns = [
-    path("hello/", hello_api),
-    path("price/", price_api),
-    path("debate/", debate_api),
-    path("predict/", predict_api),
-    path("financial/", financial_api),
-    path("comment/", comment_api),
+    path("hello", hello_api),
+    path("price", price_api),
+    path("debate", debate_api),
+    path("predict", predict_api),
+    path("financial", financial_api),
+    path("comment", comment_api),
 ]
