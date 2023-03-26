@@ -39,7 +39,15 @@ def debate_api(request):
     code = request.GET.get('code', "005930")
     page = request.GET.get('page', "1")
 
-    result = get_naver_finance_board(code, page).to_json(orient='records')
+    try:
+        result = get_naver_finance_board(code, page)
+    except AttributeError:
+        return Response({'error': 'Invalid parameters'}, status=status.HTTP_404_NOT_FOUND)
+    
+    if result.empty:
+        return Response({'error': 'No data available'}, status=status.HTTP_404_NOT_FOUND)
+
+    result = result.to_json(orient='records')
 
     return JsonResponse(json.loads(result), safe = False)
 
