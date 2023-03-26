@@ -1,5 +1,12 @@
-from .views import *
-from django.urls import path, include
+from django.urls import path
+from .views import (
+    hello_api,
+    price_api,
+    debate_api,
+    predict_api,
+    financial_api,
+    comment_api,
+)
 
 urlpatterns = [
     path("hello/", hello_api),
