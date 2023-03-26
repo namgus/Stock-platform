@@ -35,6 +35,7 @@ jobs:
     - name: Run tests
       run: |
         python manage.py test
+      working-directory: "./backend"
 
     - name: Generate coverage report
       run: |
