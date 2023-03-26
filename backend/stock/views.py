@@ -11,7 +11,7 @@ from . import serializer, models
 from .sentiment_analysis import get_naver_finance_board
 
 @api_view(['GET'])
-def HelloAPI(request):
+def hello_api(request):
     return Response("hello world!")
 
 
@@ -30,7 +30,7 @@ def price_api(request):
 
 
 @api_view(['GET'])
-def DebateAPI(request):
+def debate_api(request):
     code = request.GET.get('code', "005930")
     page = request.GET.get('page', "1")
 
