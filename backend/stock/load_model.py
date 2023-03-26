@@ -3,13 +3,19 @@ import torch.nn as nn
 import numpy as np
 import pandas as pd
 import pickle
+from .lstm import LSTM
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def load_model(close_price, sentiment_analysis):
     # Load the model and scaler
-    with open('stock/data/model.pkl', 'rb') as f:
-        model = pickle.load(f)
+    with open('stock/data/model.pt', 'rb') as f:
+        checkpoint = torch.load(f, map_location=torch.device(device))
+        model = LSTM(2, 128, 1)
+        model.load_state_dict(checkpoint)
+        model.to(device)
+        model.eval()
+
     with open('stock/data/scaler.pkl', 'rb') as f:
         scaler = pickle.load(f)
 
