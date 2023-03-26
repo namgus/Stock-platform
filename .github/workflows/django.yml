@@ -36,11 +36,16 @@ jobs:
       run: |
         python manage.py test
 
+    - name: Generate coverage report
+      run: |
+        coverage run manage.py test
+        coverage xml
+
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./.coverage
+        files: ./coverage.xml
         name: codecov-umbrella
         verbose: true
 
