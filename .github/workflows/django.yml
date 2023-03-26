@@ -44,6 +44,7 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        directory: ./backend
         working-directory: ./backend
         files: ./coverage
         name: codecov-umbrella
