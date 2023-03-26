@@ -47,6 +47,7 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         directory: ./backend
+        working-directory: ./backend
         files: ./coverage.xml
         name: codecov-umbrella
         verbose: true
