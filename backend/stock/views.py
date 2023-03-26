@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 
 from pykrx import stock
 import datetime
@@ -26,8 +27,10 @@ def price_api(request):
     
     df = stock.get_market_ohlcv(start_date.strftime("%Y%m%d"), end_date.strftime("%Y%m%d"), code)
 
+    if df.empty:
+        return Response({'error': 'No data available'}, status=status.HTTP_404_NOT_FOUND)
+    
     price = df.iloc[-1]['종가']
-
     return Response({'price': price})
 
 
@@ -87,5 +90,5 @@ def comment_api(request):
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
