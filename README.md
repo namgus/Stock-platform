@@ -6,4 +6,4 @@
 ![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon%20aws&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
 ![Github Action](https://github.com/Nam-gu/Stock-platform/actions/workflows/django.yml/badge.svg)
-
+[![codecov](https://codecov.io/gh/Nam-gu/Stock-platform/branch/main/graph/badge.svg?token=9Q1TXUD1ZB)](https://codecov.io/gh/Nam-gu/Stock-platform)
