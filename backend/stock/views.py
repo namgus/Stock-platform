@@ -60,6 +60,8 @@ def predict_api(request):
     end_date = datetime.datetime.now()
     start_date = end_date - datetime.timedelta(days=7)
     df = stock.get_market_ohlcv(start_date.strftime("%Y%m%d"), end_date.strftime("%Y%m%d"), code)
+    if df.empty:
+        return Response({'error': 'No data available'}, status=status.HTTP_404_NOT_FOUND)
     close_price = int(df.iloc[-1]['종가'])
 
     # Sentiment

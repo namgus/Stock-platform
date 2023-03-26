@@ -8,9 +8,9 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def load_model(close_price, sentiment_analysis):
     # Load the model and scaler
-    with open('backend\stock\data\model.pkl', 'rb') as f:
+    with open('stock\data\model.pkl', 'rb') as f:
         model = pickle.load(f)
-    with open('backend\stock\data\scaler.pkl', 'rb') as f:
+    with open('stock\data\scaler.pkl', 'rb') as f:
         scaler = pickle.load(f)
 
 

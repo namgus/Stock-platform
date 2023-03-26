@@ -61,3 +61,25 @@ class DebateTest(TestCase):
         page = "-1"
         response = self.client.get(f'/stock/debate/?page={page}')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class PredictPriceTest(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_predict_price_with_default_code(self):
+        response = self.client.get('/stock/predict/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('predict_price', response.data)
+
+    def test_predict_price_with_custom_code(self):
+        code = "005930"
+        response = self.client.get(f'/stock/predict/?code={code}')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertGreater(response.data['predict_price'], 0)
+        self.assertIn('predict_price', response.data)
+
+    def test_predict_price_with_invalid_code(self):
+        code = "000000"
+        response = self.client.get(f'/stock/predict/?code={code}')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
