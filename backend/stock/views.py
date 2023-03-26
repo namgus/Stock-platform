@@ -63,3 +63,15 @@ def predict_api(request):
     limit_stock_price(predict_price, close_price, lower_limit=0.9, upper_limit=1.1)
 
     return Response({'predict_price': predict_price})
+
+
+@api_view(['GET'])
+def financial_api(request):
+    code = request.GET.get('code', '005930')
+    start_date = datetime.datetime.now() - datetime.timedelta(days = 180)
+    end_date = datetime.datetime.now()
+
+    df = stock.get_market_fundamental(start_date.strftime("%Y%m%d"), end_date.strftime("%Y%m%d"), code, freq="m")
+    result = df.to_json(orient='table')
+
+    return JsonResponse(json.loads(result), safe = False)
