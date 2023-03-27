@@ -77,10 +77,23 @@ WSGI_APPLICATION = "stockplatform.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+import pymysql
+pymysql.install_as_MySQLdb()
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "stockdb",
+        "USER": "admin",
+        "PASSWORD": "skarn1234!",
+        "HOST": "stock-database.chqkhm2nn9io.ap-northeast-2.rds.amazonaws.com",
+        "PORT": "3306"
     }
 }
 
