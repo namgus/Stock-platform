@@ -83,9 +83,6 @@ WSGI_APPLICATION = "stockplatform.wsgi.application"
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
-import pymysql
-pymysql.install_as_MySQLdb()
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
