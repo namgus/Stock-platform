@@ -91,6 +91,10 @@ DATABASES = {
         "PASSWORD": "skarn1234!",
         "HOST": "stock-database.chqkhm2nn9io.ap-northeast-2.rds.amazonaws.com",
         "PORT": "3306"
+    },
+    "test": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
