@@ -7,8 +7,6 @@
     "name": "BloomUI.com",
     "url": "https://bloomui.com"
   },
-  "start": "react-scripts --max_old_space_size=8192 start",
-  "build": "react-scripts --max_old_space_size=8192 build",
   "private": false,
   "dependencies": {
     "@emotion/react": "11.9.0",
@@ -37,8 +35,8 @@
     "web-vitals": "2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --max_old_space_size=8192 start",
+    "build": "react-scripts --max_old_space_size=8192 build",
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ./src",
