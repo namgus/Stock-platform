@@ -5,6 +5,7 @@ import { Grid, Container } from '@mui/material';
 import Footer from 'src/components/Footer';
 
 import RecentOrders from './RecentOrders';
+import Debates from './Debates';
 
 function ApplicationsTransactions() {
   return (
@@ -25,6 +26,9 @@ function ApplicationsTransactions() {
         >
           <Grid item xs={12}>
             <RecentOrders />
+          </Grid>
+          <Grid item xs={12}>
+            <Debates />
           </Grid>
         </Grid>
       </Container>
