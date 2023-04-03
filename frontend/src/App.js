@@ -33,7 +33,7 @@ function RestAPI() {
     <>
       <div>
         <button onClick={()=>{
-          axios.get("http://13.124.40.91:8000/stock/hello/")
+          axios.get("http://3.36.50.105:8000/stock/hello/")
           .then(function (response) {
             console.log(response);
             { setText("test") };
