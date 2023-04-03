@@ -202,7 +202,7 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
               </FormControl>
             </Box>
           }
-          title="Recent Orders"
+          title="재무제표"
         />
       )}
       <Divider />
@@ -218,12 +218,15 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
                   onChange={handleSelectAllCryptoOrders}
                 />
               </TableCell>
-              <TableCell>Order Details</TableCell>
-              <TableCell>Order ID</TableCell>
-              <TableCell>Source</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell>날짜</TableCell>
+              <TableCell>BPS</TableCell>
+              <TableCell>PER</TableCell>
+              <TableCell>PBR</TableCell>
+              <TableCell>EPS</TableCell>
+              <TableCell>DIV</TableCell>
+              <TableCell>DPS</TableCell>
+              <TableCell align='right'>Status</TableCell>
+              <TableCell align='right'>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -255,11 +258,11 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
                       gutterBottom
                       noWrap
                     >
-                      {cryptoOrder.orderDetails}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" noWrap>
                       {format(cryptoOrder.orderDate, 'MMMM dd yyyy')}
                     </Typography>
+                    {/* <Typography variant="body2" color="text.secondary" noWrap>
+                      {format(cryptoOrder.orderDate, 'MMMM dd yyyy')}
+                    </Typography> */}
                   </TableCell>
                   <TableCell>
                     <Typography
@@ -269,7 +272,7 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
                       gutterBottom
                       noWrap
                     >
-                      {cryptoOrder.orderID}
+                      {cryptoOrder.bps}
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -280,13 +283,10 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
                       gutterBottom
                       noWrap
                     >
-                      {cryptoOrder.sourceName}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" noWrap>
-                      {cryptoOrder.sourceDesc}
+                      {cryptoOrder.per}
                     </Typography>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell>
                     <Typography
                       variant="body1"
                       fontWeight="bold"
@@ -294,13 +294,40 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
                       gutterBottom
                       noWrap
                     >
-                      {cryptoOrder.amountCrypto}
-                      {cryptoOrder.cryptoCurrency}
+                      {cryptoOrder.pbr}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" noWrap>
-                      {numeral(cryptoOrder.amount).format(
-                        `${cryptoOrder.currency}0,0.00`
-                      )}
+                  </TableCell>
+                  <TableCell>
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      color="text.primary"
+                      gutterBottom
+                      noWrap
+                    >
+                      {cryptoOrder.eps}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      color="text.primary"
+                      gutterBottom
+                      noWrap
+                    >
+                      {cryptoOrder.div}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      color="text.primary"
+                      gutterBottom
+                      noWrap
+                    >
+                      {cryptoOrder.dps}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
