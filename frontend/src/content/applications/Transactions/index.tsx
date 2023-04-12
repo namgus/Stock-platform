@@ -6,6 +6,7 @@ import Footer from 'src/components/Footer';
 
 import RecentOrders from './RecentOrders';
 import Debates from './Debates';
+import Comments from './Comments';
 
 function ApplicationsTransactions() {
   return (
@@ -29,6 +30,9 @@ function ApplicationsTransactions() {
           </Grid>
           <Grid item xs={12}>
             <Debates />
+          </Grid>
+          <Grid item xs={12}>
+            <Comments />
           </Grid>
         </Grid>
       </Container>
