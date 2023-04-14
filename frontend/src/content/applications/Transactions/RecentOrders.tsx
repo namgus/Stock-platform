@@ -22,8 +22,8 @@ function RecentOrders() {
       .then(response => {
         const financialData = response.data.data.reverse();
 
-        const updatedCryptoOrders = financialData.map(data => ({
-          id: data.날짜,
+        const updatedCryptoOrders = financialData.map((data, index) => ({
+          id: index,
           orderDate: new Date(data.날짜).getTime(),
           status: 'completed',
           bps: data.BPS,

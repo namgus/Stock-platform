@@ -210,13 +210,8 @@ const DebatesTable: FC<DebatesTableProps> = ({ naverDebates }) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  color="primary"
-                  checked={selectedAllNaverDebates}
-                  indeterminate={selectedSomeNaverDebates}
-                  onChange={handleSelectAllNaverDebates}
-                />
+              <TableCell padding="checkbox" align='center'>
+                순서
               </TableCell>
               <TableCell>날짜</TableCell>
               <TableCell>제목</TableCell>
@@ -224,7 +219,6 @@ const DebatesTable: FC<DebatesTableProps> = ({ naverDebates }) => {
               <TableCell>공감</TableCell>
               <TableCell>비공감</TableCell>
               <TableCell>감성분석</TableCell>
-              <TableCell>ㅇ</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -238,15 +232,16 @@ const DebatesTable: FC<DebatesTableProps> = ({ naverDebates }) => {
                   key={naverDebate.id}
                   selected={isNaverDebateSelected}
                 >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      color="primary"
-                      checked={isNaverDebateSelected}
-                      onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                        handleSelectOneNaverDebate(event, naverDebate.id)
-                      }
-                      value={isNaverDebateSelected}
-                    />
+                  <TableCell align='center'>
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      color="text.primary"
+                      gutterBottom
+                      noWrap
+                    >
+                      {naverDebate.id + 1}
+                    </Typography>
                   </TableCell>
                   <TableCell>
                     <Typography
@@ -308,34 +303,6 @@ const DebatesTable: FC<DebatesTableProps> = ({ naverDebates }) => {
                   </TableCell>
                   <TableCell align="right">
                     {getStatusLabel(naverDebate.sentiment)}
-                  </TableCell>
-                  <TableCell align="right">
-                    <Tooltip title="Edit Order" arrow>
-                      <IconButton
-                        sx={{
-                          '&:hover': {
-                            background: theme.colors.primary.lighter
-                          },
-                          color: theme.palette.primary.main
-                        }}
-                        color="inherit"
-                        size="small"
-                      >
-                        <EditTwoToneIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Delete Order" arrow>
-                      <IconButton
-                        sx={{
-                          '&:hover': { background: theme.colors.error.lighter },
-                          color: theme.palette.error.main
-                        }}
-                        color="inherit"
-                        size="small"
-                      >
-                        <DeleteTwoToneIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
                   </TableCell>
                 </TableRow>
               );
