@@ -7,6 +7,7 @@ import Footer from 'src/components/Footer';
 import RecentOrders from './RecentOrders';
 import Debates from './Debates';
 import Comments from './Comments';
+import AccountBalance from './AccountBalance'
 
 function ApplicationsTransactions() {
   return (
@@ -25,6 +26,9 @@ function ApplicationsTransactions() {
           alignItems="stretch"
           spacing={3}
         >
+          <Grid item xs={12}>
+            <AccountBalance />
+          </Grid>
           <Grid item xs={12}>
             <RecentOrders />
           </Grid>
