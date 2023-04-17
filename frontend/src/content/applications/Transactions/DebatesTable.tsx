@@ -251,7 +251,7 @@ const DebatesTable: FC<DebatesTableProps> = ({ naverDebates }) => {
                       gutterBottom
                       noWrap
                     >
-                      {format(naverDebate.date, 'yyyy-MM-dd hh:mm')}
+                      {format(naverDebate.date, 'yyyy-MM-dd HH:mm')}
                     </Typography>
                     {/* <Typography variant="body2" color="text.secondary" noWrap>
                       {format(naverDebate.orderDate, 'MMMM dd yyyy')}
@@ -301,7 +301,7 @@ const DebatesTable: FC<DebatesTableProps> = ({ naverDebates }) => {
                       {naverDebate.bad}
                     </Typography>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell>
                     {getStatusLabel(naverDebate.sentiment)}
                   </TableCell>
                 </TableRow>
