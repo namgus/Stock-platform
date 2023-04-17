@@ -3,6 +3,7 @@ import torch.nn as nn
 import numpy as np
 import pandas as pd
 import pickle
+import random
 from .lstm import LSTM
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -49,4 +50,11 @@ def limit_stock_price(predict_price, close_price, lower_limit, upper_limit):
     # Limit stock price upper and lower
     valid_lower = close_price * lower_limit
     valid_upper = close_price * upper_limit
-    return min(max(predict_price, valid_lower), valid_upper)
+    result = min(max(predict_price, valid_lower), valid_upper)
+
+    if result == valid_lower:
+        result = random.uniform(valid_lower, valid_upper)
+    elif result == valid_upper:
+        result = random.uniform(valid_lower, valid_upper)
+
+    return result
