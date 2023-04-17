@@ -128,14 +128,27 @@ function AccountBalance() {
   const code = new URLSearchParams(location.search).get('code') || '005930';
 
   const dictionary = {
-    '005930': '삼성전자'
+    '005930': '삼성전자',
+    '373220': 'LG에너지솔루션',
+    '000660': 'SK하이닉스',
+    '207940': '삼성바이오로직스',
+    '051910': 'LG화학',
+    '006400': '삼성SDI',
+    '005380': '현대차',
+    '005490': 'POSCO홀딩스',
+    '000270': '기아',
+    '035420': '네이버'
   };
   const companyName = dictionary[String(code)]
 
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    axios.get('http://3.36.50.105:8000/stock/price')
+    axios.get('http://3.36.50.105:8000/stock/price', {
+      params: {
+          code
+      }
+    })
       .then(response => {
         setPrice(response.data.price);
       })
@@ -147,7 +160,11 @@ function AccountBalance() {
   const [predict, setPredict] = useState(0);
 
   useEffect(() => {
-    axios.get('http://3.36.50.105:8000/stock/predict')
+    axios.get('http://3.36.50.105:8000/stock/predict', {
+      params: {
+          code
+      }
+    })
       .then(response => {
         setPredict(Math.round(response.data.predict_price * 100) / 100);
       })
@@ -159,7 +176,7 @@ function AccountBalance() {
   const priceDifference = Math.round((predict - price) * 100) / 100
   const sign = priceDifference >= 0 ? "+" : "-";
   const signBool = sign =="+" ? true : false;
-  const formattedPriceDifference = `${sign}${Math.abs(priceDifference)}`;
+  const formattedPriceDifference = `${sign}${Math.abs(priceDifference).toLocaleString()}`;
 
   const AvatarSuccess = styled(Avatar)(
     ({ theme }) => `
@@ -192,7 +209,7 @@ function AccountBalance() {
             </Typography>
             <Box>
               <Typography variant="h2" gutterBottom>
-                {price}원
+                {price.toLocaleString()}원
               </Typography>
               <Box
                 display="flex"
@@ -249,7 +266,7 @@ function AccountBalance() {
             </Typography>
             <Box>
               <Typography variant="h3" gutterBottom>
-                {predict}원
+                {predict.toLocaleString()}원
               </Typography>
               <Box
                 display="flex"

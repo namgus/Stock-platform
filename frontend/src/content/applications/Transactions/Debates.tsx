@@ -16,7 +16,7 @@ function Debates() {
   useEffect(() => {
     axios.get('http://3.36.50.105:8000/stock/debate', {
         params: {
-            code: {code}
+            code
         }
     })
       .then(response => {

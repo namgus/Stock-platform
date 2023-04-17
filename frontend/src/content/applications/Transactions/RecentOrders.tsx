@@ -16,7 +16,7 @@ function RecentOrders() {
   useEffect(() => {
     axios.get('http://3.36.50.105:8000/stock/financial', {
       params: {
-          code: {code}
+          code
       }
     })
       .then(response => {

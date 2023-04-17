@@ -218,11 +218,14 @@ const DebatesTable: FC<DebatesTableProps> = ({ comment }) => {
   // post comment
   const [commentText, setCommentText] = useState<string>("");
 
+  const code = new URLSearchParams(location.search).get('code');
   const postComment = async(commentText: string) => {
     try {
       const response = await axios.post("http://3.36.50.105:8000/stock/comment", {
-        code: "005930",
-        comments: commentText
+          
+          code,
+          comments: commentText
+        
       });
       console.log(response.data); // log the response data to the console
     } catch (error) {
@@ -301,7 +304,7 @@ const DebatesTable: FC<DebatesTableProps> = ({ comment }) => {
                       gutterBottom
                       noWrap
                     >
-                      {format(naverDebate.date, 'yyyy-MM-dd hh:mm')}
+                      {format(naverDebate.date, 'yyyy-MM-dd HH:mm')}
                     </Typography>
                     {/* <Typography variant="body2" color="text.secondary" noWrap>
                       {format(naverDebate.orderDate, 'MMMM dd yyyy')}
