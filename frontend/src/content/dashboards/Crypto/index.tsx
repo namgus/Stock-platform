@@ -9,6 +9,8 @@ import Wallets from './Wallets';
 import AccountSecurity from './AccountSecurity';
 import WatchList from './WatchList';
 
+import RecentOrders from './RecentOrders';
+
 function DashboardCrypto() {
   return (
     <>
@@ -27,7 +29,7 @@ function DashboardCrypto() {
           spacing={4}
         >
           <Grid item xs={12}>
-            <AccountBalance />
+            <RecentOrders />
           </Grid>
           <Grid item lg={8} xs={12}>
             <Wallets />
