@@ -32,7 +32,7 @@ const ListItemAvatarWrapper = styled(ListItemAvatar)(
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: ${theme.spacing(1)};
+  margin-right: ${theme.spacing(2)};
   padding: ${theme.spacing(0.5)};
   border-radius: 60px;
   background: ${
@@ -46,8 +46,6 @@ const ListItemAvatarWrapper = styled(ListItemAvatar)(
     padding: ${theme.spacing(0.5)};
     display: block;
     border-radius: inherit;
-    height: ${theme.spacing(4.5)};
-    width: ${theme.spacing(4.5)};
   }
 `
 );
@@ -141,6 +139,30 @@ function AccountBalance() {
   };
   const companyName = dictionary[String(code)]
 
+  const getImageName = (companyName: string): string => {
+    switch (companyName) {
+      case '삼성바이오로직스':
+      case '삼성전자':
+      case '삼성SDI':
+        return 'samsung';
+      case 'LG에너지솔루션':
+      case 'LG화학':
+        return 'lg';
+      case 'SK하이닉스':
+        return 'sk';
+      case '현대차':
+        return 'hyundai';
+      case 'POSCO홀딩스':
+        return 'posco';
+      case '기아':
+        return 'kia';
+      case '네이버':
+        return 'naver';
+      default:
+        return '';
+    }
+  };
+
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
@@ -199,28 +221,26 @@ function AccountBalance() {
       <Grid spacing={0} container>
         <Grid item xs={12} md={6}>
           <Box p={4}>
-            <Typography
-              sx={{
-                pb: 3
-              }}
-              variant="h2"
-            >
-              {companyName}
-            </Typography>
-            <Box>
-              <Typography variant="h2" gutterBottom>
-                {price.toLocaleString()}원
-              </Typography>
-              <Box
-                display="flex"
-                sx={{
-                  py: 4
-                }}
-                alignItems="center"
-              >
+            <ListItem>
+              <ListItemAvatarWrapper>
+                <img
+                  src={`/static/images/logo/${getImageName(companyName)}.svg`}
+                />
+              </ListItemAvatarWrapper>
+              <ListItemText
+                primary={companyName}
+                primaryTypographyProps={{ variant: 'h2', noWrap: true }}
+              />
+            </ListItem>
 
-              </Box>
-            </Box>
+            <ListItem>
+              <ListItemText
+                primary={`${price.toLocaleString()}원`}
+                primaryTypographyProps={{ variant: 'h3', noWrap: true }}
+                sx={{ pb: 4, pt: 1, pl: 10 }}
+              />
+            </ListItem>
+            
             <Grid container spacing={3}>
               <Grid sm item>
                 <Button fullWidth variant="outlined">
@@ -258,7 +278,8 @@ function AccountBalance() {
           <Box p={4}>
             <Typography
               sx={{
-                pb: 3
+                pt: 3,
+                pb: 2
               }}
               variant="h3"
             >
