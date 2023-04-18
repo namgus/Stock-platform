@@ -236,6 +236,7 @@ const DebatesTable: FC<DebatesTableProps> = ({ comment }) => {
   const handlePostCommentClick = () => {
     postComment(commentText);
     setCommentText(""); // clear the comment text
+    window.location.reload();
   };
 
 

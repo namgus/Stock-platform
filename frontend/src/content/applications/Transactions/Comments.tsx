@@ -36,7 +36,7 @@ function Comments() {
         console.error(error);
       });
   }, []);
-  
+
   return (
     <Card>
       <CommentsTable comment={comments} />
