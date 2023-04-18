@@ -199,7 +199,7 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/dashboards/crypto"
+                  to="/dashboards/recommend"
                   startIcon={<BrightnessLowTwoToneIcon />}
                 >
                   포트폴리오
@@ -210,7 +210,7 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
-                  to="/management/transactions"
+                  to="/dashboards/info"
                   startIcon={<TableChartTwoToneIcon />}
                 >
                   주식정보
