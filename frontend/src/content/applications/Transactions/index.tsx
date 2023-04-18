@@ -13,11 +13,8 @@ function ApplicationsTransactions() {
   return (
     <>
       <Helmet>
-        <title>Transactions - Applications</title>
+        <title>Stock information</title>
       </Helmet>
-      <PageTitleWrapper>
-        <PageHeader />
-      </PageTitleWrapper>
       <Container maxWidth="lg">
         <Grid
           container
@@ -25,6 +22,7 @@ function ApplicationsTransactions() {
           justifyContent="center"
           alignItems="stretch"
           spacing={3}
+          pt={5}
         >
           <Grid item xs={12}>
             <AccountBalance />

@@ -284,7 +284,7 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
                         gutterBottom
                         noWrap
                       >
-                        <Link to={`/management/transactions?code=${cryptoOrder.id}`} style={{ textDecoration: 'none', color: '#673ab7'}}>
+                        <Link to={`/management/transactions?code=${cryptoOrder.id}`} style={{ textDecoration: 'none', color: '#524466'}}>
                           {cryptoOrder.id}
                         </Link>
                       </Typography>
@@ -298,7 +298,7 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
                       gutterBottom
                       noWrap
                     >
-                      <Link to={`/management/transactions?code=${cryptoOrder.id}`} style={{ textDecoration: 'none', color: '#673ab7'}}>
+                      <Link to={`/management/transactions?code=${cryptoOrder.id}`} style={{ textDecoration: 'none', color: '#524466'}}>
                         <ListItemAvatarWrapper>
                           <img
                             src={`/static/images/logo/${getImageName(cryptoOrder.name)}.svg`}

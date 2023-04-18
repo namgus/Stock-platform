@@ -92,7 +92,7 @@ function AccountBalance({ cryptoOrders }) {
   const getSecondaryText = (company: CompanyData) => {
     switch (selectedData) {
       case 'sentiment':
-        return `${company.sentiment}% sentiment analysis`;
+        return `${company.sentiment}% sentiment`;
       case 'bps':
         return `${company.bps.toFixed(2)} BPS`;
       case 'per':
