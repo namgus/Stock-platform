@@ -240,7 +240,7 @@ const RecentOrdersTable: FC<RecentOrdersTableProps> = ({ cryptoOrders }) => {
         <CardHeader
           title={
             <Typography variant="h3" style={{ textAlign: 'center' }}>
-              재무제표
+              기업별 정보
             </Typography>
           }
         />

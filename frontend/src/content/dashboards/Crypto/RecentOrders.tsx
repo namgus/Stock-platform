@@ -89,12 +89,12 @@ function RecentOrders() {
       justifyContent="center"
       alignItems="stretch"
       spacing={4}
-    >
-      <Grid item xs={12}>
-        <RecentOrdersTable cryptoOrders={cryptoOrders} />
-      </Grid>
+    > 
       <Grid item xs={12}>
         <AccountBalance cryptoOrders={cryptoOrders} />
+      </Grid>
+      <Grid item xs={12}>
+        <RecentOrdersTable cryptoOrders={cryptoOrders} />
       </Grid>
     </Grid>
   );
