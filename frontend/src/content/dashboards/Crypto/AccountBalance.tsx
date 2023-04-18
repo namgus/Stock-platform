@@ -19,6 +19,8 @@ import Text from 'src/components/Text';
 import Chart from 'react-apexcharts';
 import type { ApexOptions } from 'apexcharts';
 
+import { useEffect, useState } from 'react';
+
 const AvatarSuccess = styled(Avatar)(
   ({ theme }) => `
       background-color: ${theme.colors.success.main};
@@ -55,8 +57,82 @@ const ListItemAvatarWrapper = styled(ListItemAvatar)(
 `
 );
 
-function AccountBalance() {
+interface CompanyData {
+  id: number;
+  name: string;
+  sentiment: number;
+  bps: number;
+  per: number;
+  pbr: number;
+  eps: number;
+  div: number;
+  dps: number;
+}
+
+function AccountBalance({ cryptoOrders }) {
   const theme = useTheme();
+
+  const [selectedData, setSelectedData] = useState<'sentiment' | 'bps' | 'per' | 'pbr' | 'eps' | 'div' | 'dps'>('per');
+
+  // Define a sorting function based on the selected data
+  const sortFunction = (a: CompanyData, b: CompanyData) => {
+    const ascending = ['sentiment', 'bps', 'eps', 'div', 'dps'].includes(selectedData);
+    const aValue = ascending ? a[selectedData] : -a[selectedData];
+    const bValue = ascending ? b[selectedData] : -b[selectedData];
+    return bValue - aValue;
+  };
+  
+  // Get the top 4 companies based on the selected data
+  const top4Companies = () => {
+    const sortedOrders = [...cryptoOrders].sort(sortFunction);
+    return sortedOrders.slice(0, 4);
+  };
+
+  // Define a function to update the secondary text of the ListItemText
+  const getSecondaryText = (company: CompanyData) => {
+    switch (selectedData) {
+      case 'sentiment':
+        return `${company.sentiment}% sentiment analysis`;
+      case 'bps':
+        return `${company.bps.toFixed(2)} BPS`;
+      case 'per':
+        return `${company.per.toFixed(2)} P/E Ratio`;
+      case 'pbr':
+        return `${company.pbr.toFixed(2)} P/B Ratio`;
+      case 'eps':
+        return `${company.eps.toFixed(2)} EPS`;
+      case 'div':
+        return `${company.div.toFixed(2)} DIV Yield`;
+      case 'dps':
+        return `${company.dps.toFixed(2)} DPS`;
+      default:
+        return '';
+    }
+  };
+
+  const getImageName = (companyName: string): string => {
+    switch (companyName) {
+      case '삼성바이오로직스':
+      case '삼성전자':
+      case '삼성SDI':
+        return 'samsung';
+      case 'LG에너지솔루션':
+      case 'LG화학':
+        return 'lg';
+      case 'SK하이닉스':
+        return 'sk';
+      case '현대차':
+        return 'hyundai';
+      case 'POSCO홀딩스':
+        return 'posco';
+      case '기아':
+        return 'kia';
+      case '네이버':
+        return 'naver';
+      default:
+        return '';
+    }
+  };
 
   const chartOptions: ApexOptions = {
     chart: {
@@ -73,7 +149,7 @@ function AccountBalance() {
         }
       }
     },
-    colors: ['#ff9900', '#1c81c2', '#333', '#5c6ac0'],
+    colors: ['#EC6B56', '#FFC154', '#47B39C', '#6050DC'],
     dataLabels: {
       enabled: true,
       formatter: function (val) {
@@ -110,7 +186,7 @@ function AccountBalance() {
     fill: {
       opacity: 1
     },
-    labels: ['Bitcoin', 'Ripple', 'Cardano', 'Ethereum'],
+    labels: top4Companies().map((company) => company.name),
     legend: {
       labels: {
         colors: theme.colors.alpha.trueWhite[100]
@@ -125,88 +201,54 @@ function AccountBalance() {
     }
   };
 
-  const chartSeries = [10, 20, 25, 45];
+  const chartSeriesSame = [25, 25, 25, 25];
+  const chartSeriesWeight = [40, 30, 20, 10];
 
   return (
     <Card>
       <Grid spacing={0} container>
+        <Grid item xs={12} md={12}>
+          <Box sx={{ margin: 3 }}>
+            <Typography variant="h3" gutterBottom align='center'>
+              추천 포트폴리오
+            </Typography>
+          </Box>
+          <Box
+            component="span"
+            sx={{
+              display: { md: 'inline-block' },
+              width: '100%',
+              textAlign: 'center'
+            }}
+          >
+            <Button onClick={() => setSelectedData('sentiment')} sx={{ margin: 1 }} variant="outlined">감성분석</Button>
+            <Button onClick={() => setSelectedData('bps')} sx={{ margin: 1 }} variant="outlined">BPS</Button>
+            <Button onClick={() => setSelectedData('per')} sx={{ margin: 1 }} variant="outlined">PER</Button>
+            <Button onClick={() => setSelectedData('pbr')} sx={{ margin: 1 }} variant="outlined">PBR</Button>
+            <Button onClick={() => setSelectedData('eps')} sx={{ margin: 1 }} variant="outlined">EPS</Button>
+            <Button onClick={() => setSelectedData('div')} sx={{ margin: 1 }} variant="outlined">DIV</Button>
+            <Button onClick={() => setSelectedData('dps')} sx={{ margin: 1 }} variant="outlined">DPS</Button>
+            <Divider />
+          </Box>
+        </Grid>
         <Grid item xs={12} md={6}>
           <Box p={4}>
             <Typography
               sx={{
-                pb: 3
+                pb: 2
               }}
               variant="h4"
             >
-              Account Balance
+              동일 비중 포트폴리오
             </Typography>
-            <Box>
-              <Typography variant="h1" gutterBottom>
-                $54,584.23
-              </Typography>
-              <Typography
-                variant="h4"
-                fontWeight="normal"
-                color="text.secondary"
-              >
-                1.0045983485234 BTC
-              </Typography>
-              <Box
-                display="flex"
-                sx={{
-                  py: 4
-                }}
-                alignItems="center"
-              >
-                <AvatarSuccess
-                  sx={{
-                    mr: 2
-                  }}
-                  variant="rounded"
-                >
-                  <TrendingUp fontSize="large" />
-                </AvatarSuccess>
-                <Box>
-                  <Typography variant="h4">+ $3,594.00</Typography>
-                  <Typography variant="subtitle2" noWrap>
-                    this month
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-            <Grid container spacing={3}>
-              <Grid sm item>
-                <Button fullWidth variant="outlined">
-                  Send
-                </Button>
-              </Grid>
-              <Grid sm item>
-                <Button fullWidth variant="contained">
-                  Receive
-                </Button>
-              </Grid>
-            </Grid>
+            <Typography
+              variant="body1"
+            >
+              Equally Weighted Portfolio
+            </Typography>
           </Box>
-        </Grid>
-        <Grid
-          sx={{
-            position: 'relative'
-          }}
-          display="flex"
-          alignItems="center"
-          item
-          xs={12}
-          md={6}
-        >
-          <Box
-            component="span"
-            sx={{
-              display: { xs: 'none', md: 'inline-block' }
-            }}
-          >
-            <Divider absolute orientation="vertical" />
-          </Box>
-          <Box py={4} pr={4} flex={1}>
+          
+          <Box pt={1} pb={6} pr={4} flex={1}>
             <Grid container spacing={0}>
               <Grid
                 xs={12}
@@ -219,114 +261,148 @@ function AccountBalance() {
                 <Chart
                   height={250}
                   options={chartOptions}
-                  series={chartSeries}
+                  series={chartSeriesSame}
                   type="donut"
                 />
               </Grid>
-              <Grid xs={12} sm={7} item display="flex" alignItems="center">
+              <Grid
+                sx={{
+                  position: 'relative'
+                }}
+                display="flex"
+                alignItems="center"
+                item
+                xs={12}
+                md={6}
+              >
+                {/* ... chart code here */}
                 <List
                   disablePadding
                   sx={{
                     width: '100%'
                   }}
                 >
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="BTC"
-                        src="/static/images/placeholders/logo/bitcoin.png"
+                  {/* Map through the top 4 companies and create a new ListItem with the updated ListItemText */}
+                  {top4Companies().map((company, index) => (
+                    <ListItem key={company.id}>
+                      <ListItemAvatarWrapper>
+                        <img
+                          src={`/static/images/logo/${getImageName(company.name)}.svg`}
+                        />
+                      </ListItemAvatarWrapper>
+                      <ListItemText
+                        primary={`${company.name}`}
+                        secondary={ getSecondaryText(company) }
+                        primaryTypographyProps={{ variant: 'h4', noWrap: true }}
+                        secondaryTypographyProps={{
+                          variant: 'subtitle2',
+                          noWrap: true
+                        }}
                       />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="BTC"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Bitcoin"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
+                      <Box>
                       <Typography align="right" variant="h4" noWrap>
-                        20%
+                        {chartSeriesSame[index]}%
                       </Typography>
-                      <Text color="success">+2.54%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="XRP"
-                        src="/static/images/placeholders/logo/ripple.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="XRP"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Ripple"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        10%
-                      </Typography>
-                      <Text color="error">-1.22%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="ADA"
-                        src="/static/images/placeholders/logo/cardano.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="ADA"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Cardano"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        40%
-                      </Typography>
-                      <Text color="success">+10.50%</Text>
-                    </Box>
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemAvatarWrapper>
-                      <img
-                        alt="ETH"
-                        src="/static/images/placeholders/logo/ethereum.png"
-                      />
-                    </ListItemAvatarWrapper>
-                    <ListItemText
-                      primary="ETH"
-                      primaryTypographyProps={{ variant: 'h5', noWrap: true }}
-                      secondary="Ethereum"
-                      secondaryTypographyProps={{
-                        variant: 'subtitle2',
-                        noWrap: true
-                      }}
-                    />
-                    <Box>
-                      <Typography align="right" variant="h4" noWrap>
-                        30%
-                      </Typography>
-                      <Text color="error">-12.38%</Text>
-                    </Box>
-                  </ListItem>
+                      {company.sentiment > 0 ? (
+                      <Text color="success">+{company.sentiment}%</Text>
+                      ) : (
+                      <Text color="error">{company.sentiment}%</Text>
+                      )}
+                      </Box>
+                    </ListItem>
+                  ))}
                 </List>
               </Grid>
             </Grid>
           </Box>
         </Grid>
+        
+        <Grid item xs={12} md={6}>
+          <Box p={4}>
+            <Typography
+              sx={{
+                pb: 2
+              }}
+              variant="h4"
+            >
+              가치 가중 포트폴리오
+            </Typography>
+            <Typography
+              variant="body1"
+            >
+              Value Weighted Portfolio
+            </Typography>
+          </Box>
+          
+          <Box pt={1} pb={6} pr={4} flex={1}>
+            <Grid container spacing={0}>
+              <Grid
+                xs={12}
+                sm={5}
+                item
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Chart
+                  height={250}
+                  options={chartOptions}
+                  series={chartSeriesWeight}
+                  type="donut"
+                />
+              </Grid>
+              <Grid
+                sx={{
+                  position: 'relative'
+                }}
+                display="flex"
+                alignItems="center"
+                item
+                xs={12}
+                md={6}
+              >
+                {/* ... chart code here */}
+                <List
+                  disablePadding
+                  sx={{
+                    width: '100%'
+                  }}
+                >
+                  {/* Map through the top 4 companies and create a new ListItem with the updated ListItemText */}
+                  {top4Companies().map((company, index) => (
+                    <ListItem key={company.id}>
+                      <ListItemAvatarWrapper>
+                        <img
+                          src={`/static/images/logo/${getImageName(company.name)}.svg`}
+                        />
+                      </ListItemAvatarWrapper>
+                      <ListItemText
+                        primary={`${company.name}`}
+                        secondary={ getSecondaryText(company) }
+                        primaryTypographyProps={{ variant: 'h4', noWrap: true }}
+                        secondaryTypographyProps={{
+                          variant: 'subtitle2',
+                          noWrap: true
+                        }}
+                      />
+                      <Box>
+                      <Typography align="right" variant="h4" noWrap>
+                        {chartSeriesWeight[index]}%
+                      </Typography>
+                      {company.sentiment > 0 ? (
+                      <Text color="success">+{company.sentiment}%</Text>
+                      ) : (
+                      <Text color="error">{company.sentiment}%</Text>
+                      )}
+                      </Box>
+                    </ListItem>
+                  ))}
+                </List>
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
+
       </Grid>
     </Card>
   );
