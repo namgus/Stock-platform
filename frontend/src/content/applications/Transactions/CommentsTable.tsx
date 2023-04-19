@@ -227,7 +227,6 @@ const DebatesTable: FC<DebatesTableProps> = ({ comment }) => {
           comments: commentText
         
       });
-      console.log(response.data); // log the response data to the console
     } catch (error) {
       console.error(error); // log the error to the console
     }

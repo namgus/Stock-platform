@@ -137,7 +137,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'http://3.38.179.15:3000'
+    'http://3.38.179.15:3000',
+    'http://stockku.shop:3000/'
 ]
 
 CORS_ALLOW_CREDENTIALS = True

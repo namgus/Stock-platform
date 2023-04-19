@@ -57,7 +57,6 @@ function RecentOrders() {
           const companyData = financialData[0];
           
           const sentiment = getSentiment(presentPrice, predictedPrice);
-          console.log(presentPrice, predictedPrice)
           
           updatedCryptoOrders.push({
             id: companyCode,
