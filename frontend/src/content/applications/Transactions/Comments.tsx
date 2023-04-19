@@ -14,7 +14,7 @@ function Comments() {
   const code = new URLSearchParams(location.search).get('code');
 
   useEffect(() => {
-    axios.get('http://3.36.50.105:8000/stock/comment', {
+    axios.get('http://3.38.179.15:8000/stock/comment', {
         params: {
             code
         }

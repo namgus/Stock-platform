@@ -35,9 +35,9 @@ function RecentOrders() {
     const apiCalls = Object.keys(dictionary).map((key) => {
       const companyCode = key;
       return axios.all([
-        axios.get(`http://3.36.50.105:8000/stock/financial?code=${companyCode}`),
-        axios.get(`http://3.36.50.105:8000/stock/price?code=${companyCode}`),
-        axios.get(`http://3.36.50.105:8000/stock/predict?code=${companyCode}`)
+        axios.get(`http://3.38.179.15:8000/stock/financial?code=${companyCode}`),
+        axios.get(`http://3.38.179.15:8000/stock/price?code=${companyCode}`),
+        axios.get(`http://3.38.179.15:8000/stock/predict?code=${companyCode}`)
       ]);
     });
 
