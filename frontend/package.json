@@ -39,7 +39,7 @@
     "@types/react-dom": "17.0.13"
   },
   "scripts": {
-    "start": "export PORT=80 && react-scripts --max_old_space_size=8192 start",
+    "start": "react-scripts --max_old_space_size=8192 start",
     "build": "GENERATE_SOURCEMAP=false react-scripts --max_old_space_size=8192 build",
     "eject": "react-scripts eject",
     "lint": "eslint .",
