@@ -71,7 +71,7 @@ def predict_api(request):
     predict_price = load_model(close_price, sentiment_analysis)
     
     # Limit upper and lower
-    predict_price = limit_stock_price(predict_price, close_price, lower_limit=0.9, upper_limit=1.1)
+    predict_price = limit_stock_price(predict_price, close_price, lower_limit=0.95, upper_limit=1.05)
 
     return Response({'predict_price': predict_price})
 

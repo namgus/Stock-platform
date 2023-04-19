@@ -12,11 +12,11 @@ services:
       - 8000:8000
       - 80:80
 
-  # frontend:
-  #   command : npm start
-  #   container_name: front
-  #   build:
-  #     context: ./frontend/
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3000:3000"
+  frontend:
+    command : npm start
+    container_name: front
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
