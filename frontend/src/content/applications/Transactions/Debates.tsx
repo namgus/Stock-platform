@@ -14,7 +14,7 @@ function Debates() {
   const code = new URLSearchParams(location.search).get('code');
 
   useEffect(() => {
-    axios.get('http://43.200.2.113:8000/stock/debate', {
+    axios.get('http://43.201.185.173:8000/stock/debate', {
         params: {
             code
         }

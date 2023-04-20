@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-pte5&m5u$9786t^warwdr%%gx=_5+wr2j!fl-saj1=3chnjglw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "43.200.2.113", "stockku.shop"]
+ALLOWED_HOSTS = ["127.0.0.1", "43.201.185.173", "stockku.shop"]
 
 
 # Application definition
@@ -137,7 +137,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'http://43.200.2.113:3000',
+    'http://43.201.185.173:3000',
     'http://stockku.shop:3000',
     'http://stockku.shop:80'
 ]

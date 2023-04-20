@@ -221,7 +221,7 @@ const DebatesTable: FC<DebatesTableProps> = ({ comment }) => {
   const code = new URLSearchParams(location.search).get('code');
   const postComment = async(commentText: string) => {
     try {
-      const response = await axios.post("http://43.200.2.113:8000/stock/comment", {
+      const response = await axios.post("http://43.201.185.173:8000/stock/comment", {
           
           code,
           comments: commentText
