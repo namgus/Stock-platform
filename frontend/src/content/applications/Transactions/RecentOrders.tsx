@@ -14,7 +14,7 @@ function RecentOrders() {
   const code = new URLSearchParams(location.search).get('code');
 
   useEffect(() => {
-    axios.get('http://3.38.179.15:8000/stock/financial', {
+    axios.get('http://43.200.2.113:8000/stock/financial', {
       params: {
           code
       }

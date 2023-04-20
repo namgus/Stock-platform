@@ -14,7 +14,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://user-images.githubusercontent.com/28288186/233266865-c10ae364-06bd-4b04-ad91-fa9f18b905aa.png" width="60%" height="60%">
+<img src="https://user-images.githubusercontent.com/28288186/233266865-c10ae364-06bd-4b04-ad91-fa9f18b905aa.png" width="80%" height="80%">
 
 ### 개요
 * 주식 시장에서 다양한 정보를 수집하고 이를 투자에 어떻게 활용하는지는 중요하다. 양질의 정보를 제공하기 위해 웹플랫폼을 개발하여 서비스한다.
@@ -30,7 +30,7 @@
 <!-- ABOUT System Configuration -->
 ## System Configuration
 
-<img src="https://user-images.githubusercontent.com/28288186/233267215-c148203e-f9b3-45e1-8130-fc21bb29f49d.png" width="70%" height="70%">
+<img src="https://user-images.githubusercontent.com/28288186/233267215-c148203e-f9b3-45e1-8130-fc21bb29f49d.png" width="90%" height="90%">
 
 
 |   구성    |  Tools  |설명|

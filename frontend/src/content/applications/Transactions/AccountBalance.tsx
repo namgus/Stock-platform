@@ -166,7 +166,7 @@ function AccountBalance() {
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    axios.get('http://3.38.179.15:8000/stock/price', {
+    axios.get('http://43.200.2.113:8000/stock/price', {
       params: {
           code
       }
@@ -182,7 +182,7 @@ function AccountBalance() {
   const [predict, setPredict] = useState(0);
 
   useEffect(() => {
-    axios.get('http://3.38.179.15:8000/stock/predict', {
+    axios.get('http://43.200.2.113:8000/stock/predict', {
       params: {
           code
       }
