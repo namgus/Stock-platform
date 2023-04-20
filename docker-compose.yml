@@ -16,5 +16,7 @@ services:
     build:
       context: ./frontend/
       dockerfile: Dockerfile
+    environment:
+      - WDS_SOCKET_PORT=0  
     ports:
       - "80:3000"
